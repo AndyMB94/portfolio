@@ -10,6 +10,25 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes star-drift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+.starfield-layer {
+  animation: star-drift 150s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starfield-layer {
+    animation: none;
+  }
+}
+
 @theme inline {
     --font-heading: var(--font-sans);
     --font-sans: 'Inter Variable', sans-serif;
