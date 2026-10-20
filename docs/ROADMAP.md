@@ -166,3 +166,20 @@ Checklist:
 - [x] 8.5 Verificado en navegador: botones de email/WhatsApp funcionan, footer se ve bien, contraste entre secciones visible y sutil.
 
 ---
+
+## Fase 9 — Metadata, mobile y build de producción (cerrada 2026-10-20)
+
+**Contexto:** Con las 6 secciones de contenido completas, quedaban tres verificaciones antes de pensar en desplegar: metadata real del sitio (seguía con los valores default del scaffold de Vite), que el diseño responda bien en mobile (solo se había probado en desktop), y que el build de producción (no solo `pnpm dev`) funcione.
+
+**Decisión 1 — favicon propio con iniciales, sin diseño elaborado.** Se reemplazó el rayo de Vite por un SVG simple con "AM" en el acento morado sobre el fondo oscuro del sitio — suficiente para no dejar branding ajeno, sin invertir tiempo en un logo elaborado que no se pidió.
+
+**Decisión 2 — sin Open Graph todavía.** No se agregaron `og:image`/`og:description` porque requieren una imagen de preview social que no existe aún; queda pendiente para cuando se comparta el link activamente.
+
+Checklist:
+- [x] 9.1 `index.html`: `lang="es"` (estaba mal como `"en"` desde el scaffold), `<title>` y `<meta name="description">` reales, favicon propio con iniciales.
+- [x] 9.2 Verificado en navegador: título de pestaña y favicon correctos.
+- [x] 9.3 Revisión completa en mobile (375px, DevTools responsive): Header, Hero, Sobre mí, Proyectos, Contacto y Footer — todo se apila y hace wrap correctamente, sin overflow ni texto cortado.
+- [x] 9.4 `pnpm run build` — **hallazgo**: fallaba con error de TypeScript, `baseUrl` está deprecado (se elimina en TS 7.0). Se sacó `baseUrl` de `tsconfig.json` y `tsconfig.app.json`; con `moduleResolution: "bundler"` no hace falta, `paths` se resuelve solo relativo al propio archivo.
+- [x] 9.5 `pnpm run build` + `pnpm run preview` — build limpio, sitio funciona igual que en desarrollo sirviendo los archivos ya compilados.
+
+---
