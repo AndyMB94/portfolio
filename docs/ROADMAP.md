@@ -145,3 +145,24 @@ Checklist:
 - [x] 7.4 Verificado en navegador: card se ve bien, los dos links abren en pestaña nueva a las URLs correctas.
 
 ---
+
+## Fase 8 — Contacto, Footer y ritmo visual (cerrada 2026-10-20)
+
+**Contexto:** Últimas dos secciones del orden de `DESIGN.md` (Contacto y Footer), más un ajuste de diseño general sobre cómo se separan visualmente las secciones.
+
+**Decisión 1 — email personal, no institucional.** Para el `mailto:` se usó `andy.94.m.b@gmail.com` (Gmail personal) en vez del correo de Tecsup — el institucional depende de seguir afiliado a la institución como egresado y podría desactivarse, mientras que el portafolio está pensado para durar y sumar más proyectos a futuro.
+
+**Decisión 2 — WhatsApp en vez de número de teléfono en texto plano.** Se agregó un botón a `wa.me/51927939655` en lugar de mostrar el número como texto suelto en el HTML — reduce la exposición a scraping automático de teléfonos (mucho más agresivo que con emails), es el canal de contacto directo estándar en Perú, y el usuario ya lo tiene publicado en el CV descargable de todas formas.
+
+**Decisión 3 — ubicación con ícono, sin emoji de bandera.** Se agregó "Lima, Perú" con el ícono genérico `MapPin` de lucide-react en vez de un emoji de bandera — consistente con la estética minimalista (Vercel/Linear) del resto del sitio, sin depender del renderizado de emojis entre sistemas operativos.
+
+**Decisión 4 — fondo alternado entre secciones.** Todas las secciones usaban el mismo fondo (`--background`) separadas solo por un borde superior, lo que se sentía plano en un scroll largo. Se alternó el fondo entre `--background` y `--card` sección por sección (Hero y Proyectos en `--background`; Sobre mí y Contacto en `--card`) — dan ritmo visual sutil sin agregar colores nuevos ni romper el estilo minimalista.
+
+Checklist:
+- [x] 8.1 Crear `src/components/Contact.tsx`: título, texto de invitación, botones "Enviar email" (mailto) y "WhatsApp" (wa.me), íconos GitHub/LinkedIn repetidos, ubicación.
+- [x] 8.2 Crear `src/components/Footer.tsx`: copyright con año dinámico, email y links de GitHub/LinkedIn repetidos.
+- [x] 8.3 Reemplazar el último placeholder (`#contacto`) de `App.tsx` por `<Contact />`, agregar `<Footer />` al final.
+- [x] 8.4 Alternar `bg-card` en `About` y `Contact` para dar ritmo visual entre secciones.
+- [x] 8.5 Verificado en navegador: botones de email/WhatsApp funcionan, footer se ve bien, contraste entre secciones visible y sutil.
+
+---
