@@ -183,3 +183,27 @@ Checklist:
 - [x] 9.5 `pnpm run build` + `pnpm run preview` — build limpio, sitio funciona igual que en desarrollo sirviendo los archivos ya compilados.
 
 ---
+
+## Fase 10 — Pulido visual: starfield, hover y scroll reveal (cerrada 2026-10-20)
+
+**Contexto:** Con el sitio funcionalmente completo, se evaluó si valía la pena sumar detalles de interacción (animaciones, efectos hover) para que se sienta más vivo, sin comprometer el rendimiento ni la estética minimalista ya definida.
+
+**Decisión 1 — starfield en CSS puro, sin librerías.** Se armó un fondo de estrellas animado con la técnica clásica de un solo `box-shadow` con cientos de posiciones aleatorias sobre un div de 1px, animado con una sola transformación `translateY` en loop — sin Canvas ni JS corriendo en cada frame, acelerado por GPU. Se generan las posiciones una sola vez por carga (`Math.random()` a nivel de módulo en `src/lib/stars.ts`), no en cada render.
+
+**Decisión 2 — el starfield se extendió a las 4 secciones, no solo el Hero.** La precaución inicial (competir con el acento morado y la lectura) no se notó en la práctica al verlo en vivo — se probó primero solo en el Hero, se vio bien, y se decidió extenderlo a Sobre mí, Proyectos y Contacto también.
+
+**Decisión 3 — fade-in al scroll con `IntersectionObserver` nativo, sin librería de animación.** Se armó un hook chico (`useInView`) y un componente `Reveal` reutilizable — cada sección aparece una sola vez (se usa `unobserve` tras la primera entrada en pantalla) para no repetir el efecto cada vez que el usuario sube y baja el scroll.
+
+**Decisión 4 — toda animación respeta `prefers-reduced-motion`.** Tanto el starfield (vía `@media (prefers-reduced-motion: reduce)` en `index.css`) como el `Reveal` (vía la variante `motion-reduce:` de Tailwind) se desactivan para usuarios que piden menos movimiento en su sistema — se muestra el contenido directo, sin transición.
+
+Checklist:
+- [x] 10.1 Crear `src/lib/stars.ts` (genera el `box-shadow` de las estrellas una vez) y `src/components/Starfield.tsx`.
+- [x] 10.2 Agregar la animación `star-drift` y el soporte de `prefers-reduced-motion` en `index.css`.
+- [x] 10.3 Integrar `<Starfield />` en Hero, y luego también en Sobre mí, Proyectos y Contacto.
+- [x] 10.4 Hover en los badges de stack (Sobre mí): borde y texto se tiñen de acento morado.
+- [x] 10.5 Hover en la card de Vacantia: leve elevación + borde morado + resplandor sutil.
+- [x] 10.6 Crear `src/hooks/useInView.ts` y `src/components/Reveal.tsx`, envolver el contenido de las 4 secciones.
+- [x] 10.7 Verificado en navegador: estrellas sutiles en las 4 secciones, hovers funcionan, fade-in se dispara una sola vez por sección al hacer scroll hacia abajo.
+- [x] 10.8 `pnpm run build` sigue limpio después de todos los cambios.
+
+---
