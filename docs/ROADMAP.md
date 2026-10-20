@@ -88,3 +88,20 @@ Checklist:
 - [x] 4.7 Verificado en navegador: header sticky, scroll suave a cada ancla sin tapar el título, íconos abren en pestaña nueva, sin errores de consola.
 
 ---
+
+## Fase 5 — Hero (cerrada 2026-10-20)
+
+**Contexto:** Segunda sección del orden de `DESIGN.md`: nombre, tagline, intro y los dos CTAs principales ("Ver proyectos", "Descargar CV"). Reemplaza el placeholder de `#inicio`.
+
+**Decisión 1 — tagline explícito sobre "integrar IA", no "programar con IA".** El ejemplo de `DESIGN.md` ("construyo productos con IA de punta a punta") se discutió y se ajustó a *"Desarrollador Full Stack — integro IA (voz, LLMs) en productos reales, de punta a punta"* — "integro"/"voz, LLMs" deja claro que se refiere a integraciones de servicios de IA dentro del producto (como Deepgram/DeepSeek/ElevenLabs en Vacantia), no a usar IA como asistente para programar, que es una lectura ambigua del texto original.
+
+**Decisión 2 — el tagline no es un inventario de todos los trabajos.** Se aclaró que el tagline es una frase de posicionamiento centrada en lo más diferenciador (Vacantia), no una afirmación de que el 100% del trabajo profesional involucra IA — el trabajo en Fiberlux, por ejemplo, no tiene integraciones de IA y no contradice el tagline. Ese contexto más completo va a "Sobre mí" (Fase 6).
+
+**Decisión 3 — jerarquía visual entre los dos CTA.** "Ver proyectos" como botón sólido (acción principal) y "Descargar CV" como `outline` (secundario), para que el ojo vaya primero a Proyectos — el argumento central del portafolio.
+
+Checklist:
+- [x] 5.1 Crear `src/components/Hero.tsx`: nombre y tagline en `font-mono` (tagline en color de acento), intro en texto normal, dos botones.
+- [x] 5.2 Reemplazar el placeholder `#inicio` de `App.tsx` por `<Hero />`.
+- [x] 5.3 Verificado en navegador: contenido se ve correcto, "Ver proyectos" hace scroll suave a `#proyectos`.
+
+---
