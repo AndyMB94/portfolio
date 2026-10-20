@@ -10,8 +10,13 @@ export function useActiveSection(ids: string[]) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries.find((entry) => entry.isIntersecting)
-        if (visible) setActiveId(visible.target.id)
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id)
+          } else {
+            setActiveId((current) => (current === entry.target.id ? null : current))
+          }
+        })
       },
       { rootMargin: '-50% 0px -50% 0px' },
     )

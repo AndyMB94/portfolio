@@ -1,3 +1,4 @@
+import { ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Starfield } from '@/components/Starfield'
 import { Reveal } from '@/components/Reveal'
@@ -6,7 +7,7 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen flex-col items-center justify-center gap-6 overflow-hidden px-6 text-center"
+      className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-6 overflow-hidden px-6 text-center"
     >
       <Starfield />
 
@@ -34,6 +35,14 @@ export function Hero() {
           </div>
         </div>
       </Reveal>
+
+      <a
+        href="#sobre-mi"
+        aria-label="Desplazarse hacia abajo"
+        className="absolute bottom-8 animate-bounce text-muted-foreground transition-colors hover:text-foreground motion-reduce:animate-none"
+      >
+        <ChevronDown className="size-6" />
+      </a>
     </section>
   )
 }
