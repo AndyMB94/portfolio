@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
+import { About } from '@/components/About'
 
 function App() {
   return (
@@ -7,12 +8,7 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <section
-          id="sobre-mi"
-          className="flex min-h-screen scroll-mt-20 items-center justify-center"
-        >
-          <p className="text-foreground">Sobre mí (placeholder)</p>
-        </section>
+        <About />
         <section
           id="proyectos"
           className="flex min-h-screen scroll-mt-20 items-center justify-center"
