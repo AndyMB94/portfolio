@@ -105,3 +105,25 @@ Checklist:
 - [x] 5.3 Verificado en navegador: contenido se ve correcto, "Ver proyectos" hace scroll suave a `#proyectos`.
 
 ---
+
+## Fase 6 — Sobre mí (cerrada 2026-10-20)
+
+**Contexto:** Tercera sección del orden de `DESIGN.md`: foto, bio (2-3 párrafos, no solo profesional) y badges del stack probado en producción con Vacantia. Reemplaza el placeholder de `#sobre-mi`.
+
+**Decisión 1 — badges como pills de texto, sin logos por tecnología.** `DESIGN.md` pide los badges en `font-mono`. En vez de buscar/armar un ícono de marca por cada tecnología (11 en total: React, TypeScript, Django, PostgreSQL, Redis, Celery, Socket.io, Docker, Deepgram, DeepSeek, ElevenLabs — varias de ellas, como las de IA, ni siquiera tienen ícono en librerías como `simple-icons`), se usan pills de texto simples con borde — minimalista, consistente con la estética Vercel/Linear, y evita mantener una docena de SVGs a mano.
+
+**Decisión 2 — lista de badges curada, no el stack completo.** De las 20+ piezas reales del stack de Vacantia, se eligieron las 11 más representativas de la historia técnica (pipeline de voz en tiempo real + infra de producción). El detalle de implementación (DRF, JWT, Django Groups, Resend, Express, Nginx, Certbot) queda para el texto de la card de Vacantia en Proyectos (Fase 7), no en los badges.
+
+**Decisión 3 — bio sin detalle de ciclo universitario ni certificados adjuntos.** Se menciona que es egresado de Tecsup y cursa Ingeniería de Sistemas en la UPC, pero sin el detalle de "voy en los primeros ciclos por convalidaciones" (información de nivel CV/entrevista, no de portafolio) ni se suben los archivos de la constancia de egreso o el certificado Cambridge B2 — alcanza con mencionarlos como texto, los documentos de respaldo son para cuando se piden en el proceso de selección.
+
+**Decisión 4 — intereses personales acotados.** De la lista de hobbies que dio (música, influencers de programación, conducir, cocinar, tecnología/IA), se usaron solo 1-2: el interés en tecnología/IA (conecta con el resto del sitio) y una mención breve a cocinar/música — una lista larga de hobbies le resta profesionalismo a un portafolio técnico.
+
+Checklist:
+- [x] 6.1 Copiar la foto de perfil a `src/assets/profile.jpg` (hallazgo: resolución baja, 240x288px — se ve bien en el tamaño actual de 160px, pero convendría una versión de mayor resolución si se usa más grande en el futuro).
+- [x] 6.2 Crear `src/components/About.tsx`: foto circular, bio en 3 párrafos, badges de stack.
+- [x] 6.3 Reemplazar el placeholder `#sobre-mi` de `App.tsx` por `<About />`.
+- [x] 6.4 Encontrado y reubicado el CV real (estaba suelto en la raíz del repo) a `public/cv.pdf`, reemplazando el placeholder de los botones "Descargar CV" del Header y el Hero.
+- [x] 6.5 Ajuste de legibilidad: `max-w-xl` en el bloque de texto de la bio, para no tener líneas demasiado largas.
+- [x] 6.6 Verificado en navegador: foto, bio y badges se ven bien, "Descargar CV" baja el PDF real.
+
+---
