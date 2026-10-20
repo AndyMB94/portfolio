@@ -1,13 +1,12 @@
 import { Header } from '@/components/Header'
+import { Hero } from '@/components/Hero'
 
 function App() {
   return (
     <>
       <Header />
       <main>
-        <section id="inicio" className="flex min-h-screen items-center justify-center">
-          <p className="text-foreground">Hero (placeholder)</p>
-        </section>
+        <Hero />
         <section
           id="sobre-mi"
           className="flex min-h-screen scroll-mt-20 items-center justify-center"
