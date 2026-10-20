@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { About } from '@/components/About'
+import { Projects } from '@/components/Projects'
 
 function App() {
   return (
@@ -9,12 +10,7 @@ function App() {
       <main>
         <Hero />
         <About />
-        <section
-          id="proyectos"
-          className="flex min-h-screen scroll-mt-20 items-center justify-center"
-        >
-          <p className="text-foreground">Proyectos (placeholder)</p>
-        </section>
+        <Projects />
         <section
           id="contacto"
           className="flex min-h-screen scroll-mt-20 items-center justify-center"
