@@ -221,3 +221,22 @@ Checklist:
 - [x] 11.4 `pnpm run build` sigue limpio.
 
 ---
+
+## Fase 12 — Repo en GitHub, flecha de scroll y dos bugs de la Fase 11 (cerrada 2026-10-20)
+
+**Contexto:** Se creó el repositorio remoto del proyecto, se agregó una señal visual de scroll en el Hero (último punto de pulido pendiente), y al verificarlo en el navegador aparecieron dos bugs reales relacionados con el Header sticky y el scrollspy de la Fase 11.
+
+**Decisión 1 — repo `portfolio` en GitHub, rama `main`.** Se creó vacío en `github.com/AndyMB94/portfolio` (sin inicializar con README/gitignore/license, para evitar conflicto con lo que ya existía local) y se renombró la rama local de `master` a `main` antes del primer push, alineado con el estándar actual de GitHub — no había ningún riesgo porque todavía no se había subido a ningún lado.
+
+**Hallazgo 1 — el Hero con `min-h-screen` quedaba más alto que la pantalla.** El Header sticky ocupa espacio en el flujo normal del documento además del `100vh` del Hero, así que la flecha de scroll (pegada al fondo del Hero) quedaba fuera de la vista inicial sin hacer scroll. Se cambió `min-h-screen` por `min-h-[calc(100vh-4rem)]`, restando la altura aproximada del Header.
+
+**Hallazgo 2 — el link activo del nav no se apagaba.** `useActiveSection` solo "prendía" una sección cuando entraba en pantalla, pero nunca la apagaba cuando el usuario volvía al Hero (que no está entre las secciones observadas) — el último link activo quedaba marcado para siempre. Se corrigió para que, al salir una sección de la franja central observada, se limpie el estado si nadie más la reemplazó.
+
+Checklist:
+- [x] 12.1 Crear el repo `portfolio` en GitHub (público, vacío) y conectarlo (`git remote add origin` + rama `main` + push).
+- [x] 12.2 Agregar flecha animada (`ChevronDown`, `animate-bounce`, respeta `prefers-reduced-motion`) al fondo del Hero, con link a `#sobre-mi`.
+- [x] 12.3 **Bug fix:** `min-h-screen` → `min-h-[calc(100vh-4rem)]` en el Hero, para que la flecha no quede tapada por el Header sticky.
+- [x] 12.4 **Bug fix:** `useActiveSection` ahora limpia el link activo cuando la sección sale de la franja observada y nada la reemplaza.
+- [x] 12.5 Verificado en navegador: la flecha se ve sin scrollear, lleva a Sobre mí al hacer clic, y el nav ya no queda con un link pegado al volver al Hero.
+
+---
