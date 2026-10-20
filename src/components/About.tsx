@@ -57,7 +57,7 @@ export function About() {
             {STACK.map((tech) => (
               <span
                 key={tech}
-                className="rounded-full border border-border px-3 py-1 font-mono text-xs text-muted-foreground"
+                className="rounded-full border border-border px-3 py-1 font-mono text-xs text-muted-foreground transition-colors hover:border-primary hover:text-primary"
               >
                 {tech}
               </span>

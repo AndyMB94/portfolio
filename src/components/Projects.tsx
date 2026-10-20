@@ -15,7 +15,7 @@ export function Projects() {
       <div className="relative mx-auto max-w-5xl">
         <h2 className="text-3xl font-medium text-foreground">Proyectos</h2>
 
-        <div className="mt-10 rounded-2xl border border-border bg-card p-8">
+        <div className="mt-10 rounded-2xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_40px_-15px_var(--primary)]">
           <h3 className="font-mono text-2xl text-primary">Vacantia</h3>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             Plataforma de reclutamiento con IA: un candidato postula con su CV, un filtro con IA
