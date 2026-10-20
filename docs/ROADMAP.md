@@ -127,3 +127,21 @@ Checklist:
 - [x] 6.6 Verificado en navegador: foto, bio y badges se ven bien, "Descargar CV" baja el PDF real.
 
 ---
+
+## Fase 7 — Proyectos: case study de Vacantia (cerrada 2026-10-20)
+
+**Contexto:** Cuarta sección y argumento de venta central del portafolio, según `DESIGN.md`: una sola card grande para Vacantia, con el contenido técnico ya definido (qué es, por qué es interesante técnicamente, qué enlazar).
+
+**Decisión 1 — sin componente `ProjectCard` reutilizable todavía.** Con un solo proyecto, armar una abstracción para "tarjetas de proyecto" sería anticipar una necesidad que no existe aún. `DESIGN.md` ya prevé reconsiderar la estructura (multi-página) cuando haya un segundo proyecto propio — ahí sí tendría sentido extraer el patrón.
+
+**Decisión 2 — verificación de los links antes de usarlos.** Se confirmó que `vacantia.andymallcco.dev` carga la app completa (catálogo de vacantes) en el navegador real del usuario — un fetch automático sin JS solo veía el texto "Vacantia" suelto, por ser una SPA renderizada del lado del cliente — y que el repo `github.com/AndyMB94/interviewer-ai` responde 200 (es público), antes de linkearlos en el sitio.
+
+**Decisión 3 — screenshots pendientes.** `DESIGN.md` los sugiere como opcionales; no se tienen capturas a mano todavía, se agregan en una fase posterior.
+
+Checklist:
+- [x] 7.1 Crear `src/components/Projects.tsx`: card de Vacantia con descripción, 4 puntos técnicos destacados (pipeline de voz, auth híbrida JWT, hardening de seguridad real, despliegue end-to-end) y botones a sitio en vivo + repo.
+- [x] 7.2 Verificar que `vacantia.andymallcco.dev` y el repo de GitHub responden correctamente antes de linkearlos.
+- [x] 7.3 Reemplazar el placeholder `#proyectos` de `App.tsx` por `<Projects />`.
+- [x] 7.4 Verificado en navegador: card se ve bien, los dos links abren en pestaña nueva a las URLs correctas.
+
+---
