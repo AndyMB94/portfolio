@@ -207,3 +207,17 @@ Checklist:
 - [x] 10.8 `pnpm run build` sigue limpio después de todos los cambios.
 
 ---
+
+## Fase 11 — Nav activo y subrayado animado (cerrada 2026-10-20)
+
+**Contexto:** El Header/Nav (Fase 4) no recibió el pulido visual de la Fase 10 a propósito (es sticky, no "entra" en pantalla, así que el fade-in no aplicaba), pero quedaban dos detalles de interacción típicos de un nav bien cuidado: feedback visual más que un simple cambio de color al pasar el mouse, y saber en qué sección está el usuario sin tener que mirar el scroll.
+
+**Decisión 1 — scrollspy con `IntersectionObserver` y `rootMargin` al 50%.** Se armó `useActiveSection`, que observa las 3 secciones con ancla (Sobre mí, Proyectos, Contacto) usando un `rootMargin: '-50% 0px -50% 0px'` — esto reduce el viewport observado a una línea horizontal en el centro de la pantalla, así solo una sección "intersecta" a la vez, dando un resultado limpio de cuál es la sección activa sin lógica manual de comparar posiciones de scroll.
+
+Checklist:
+- [x] 11.1 Crear `src/hooks/useActiveSection.ts`.
+- [x] 11.2 Agregar subrayado animado (`scale-x-0` → `scale-x-100` en hover) a los links del nav, y resaltado permanente en acento morado para el link de la sección activa.
+- [x] 11.3 Verificado en navegador: el subrayado se desliza al pasar el mouse, y el link correcto se resalta en morado al hacer scroll por cada sección.
+- [x] 11.4 `pnpm run build` sigue limpio.
+
+---
