@@ -47,3 +47,23 @@ Checklist:
 - [x] 2.5 Verificado en navegador: la página sigue renderizando sin errores con los estilos base de shadcn aplicados (fondo blanco, Inter, bordes).
 
 ---
+
+## Fase 3 — Tema oscuro y tipografía (cerrada 2026-10-19)
+
+**Contexto:** Con shadcn/ui inicializado (Fase 2) con tokens por defecto, el siguiente paso es aplicar los colores y tipografías reales definidos en `DESIGN.md` antes de construir las secciones del sitio.
+
+**Decisión 1 — modo oscuro forzado, sin switcher.** El sitio es oscuro siempre (`DESIGN.md` no pide alternar claro/oscuro), así que se fuerza la clase `dark` en `<html>` en vez de agregar un toggle. El bloque `:root` (claro) queda sin usar, intacto, por compatibilidad con `shadcn add` si se agregan componentes más adelante.
+
+**Decisión 2 — interpretación del rango de fondo.** `DESIGN.md` da un rango `#0a0a0f` a `#111118` para el fondo; se usó `#0a0a0f` como fondo de página y `#111118` para `card`/`popover` (superficies elevadas), dando una leve diferencia de profundidad entre ambos.
+
+**Decisión 3 — JetBrains Mono vía `@fontsource-variable`.** Mismo patrón que Inter (que ya había instalado shadcn), declarada como `--font-mono` para usarla puntualmente con la clase `font-mono` de Tailwind donde corresponda (tagline, badges de stack) — no en el body completo.
+
+Checklist:
+- [x] 3.1 Forzar `class="dark"` en `index.html`.
+- [x] 3.2 Sobreescribir los tokens de color del bloque `.dark` en `src/index.css` con los valores de `DESIGN.md` (fondo, card, acento morado `#c084fc`, texto, bordes).
+- [x] 3.3 Verificado en navegador: fondo oscuro y acento morado aplicados correctamente, sin errores de consola.
+- [x] 3.4 Corregido warning de Vite sobre `__dirname` → `import.meta.dirname` en `vite.config.ts`.
+- [x] 3.5 Instalar y declarar JetBrains Mono (`@fontsource-variable/jetbrains-mono`) como `--font-mono`.
+- [x] 3.6 Verificado: `pnpm dev` compila sin errores tras agregar la fuente.
+
+---
