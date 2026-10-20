@@ -67,3 +67,24 @@ Checklist:
 - [x] 3.6 Verificado: `pnpm dev` compila sin errores tras agregar la fuente.
 
 ---
+
+## Fase 4 — Header / Nav (cerrada 2026-10-19)
+
+**Contexto:** Primer componente de contenido real del sitio, según el orden de `DESIGN.md`. Define los anchors (`#sobre-mi`, `#proyectos`, `#contacto`) que el resto de las secciones van a usar, y el patrón de scroll suave con header sticky.
+
+**Decisión 1 — íconos de GitHub/LinkedIn propios, sin librería nueva.** `lucide-react` (versión instalada, 1.x) dejó de incluir íconos de marcas — solo íconos genéricos. En vez de sumar una dependencia nueva (ej. `react-icons`) para apenas 2 íconos, se armaron como componentes SVG propios en `src/components/icons.tsx`, con los paths oficiales de cada logo.
+
+**Decisión 2 — sin menú hamburguesa en mobile.** Por debajo de `md` se ocultan los links de texto del nav y se deja nombre + íconos sociales + botón CV. Para una sola página corta, agregar un menú hamburguesa es complejidad que no se justifica todavía.
+
+**Decisión 3 — `Button` de Base UI con `render` en vez de `asChild`.** Base UI (el motor de shadcn elegido en Fase 2) usa la prop `render` para polimorfismo, no `asChild` como Radix. Al renderizar el botón "Descargar CV" como un `<a href download>` (para que funcione clic derecho / abrir en pestaña nueva), hace falta además `nativeButton={false}` — si no, Base UI tira un warning en consola porque por defecto espera un `<button>` nativo.
+
+Checklist:
+- [x] 4.1 Crear `src/components/Header.tsx`: sticky, nombre a la izquierda, nav a la derecha (Sobre mí/Proyectos/Contacto), íconos GitHub/LinkedIn, botón "Descargar CV" (placeholder `/cv.pdf` hasta tener el archivo real).
+- [x] 4.2 Instalar el componente `Button` de shadcn/ui (`shadcn add button`).
+- [x] 4.3 Crear `src/components/icons.tsx` con los SVG de GitHub y LinkedIn (hallazgo: `lucide-react` 1.x no trae íconos de marca).
+- [x] 4.4 Agregar `scroll-behavior: smooth` global y `scroll-mt-20` en las secciones para que el header fijo no tape el título al hacer scroll a un ancla.
+- [x] 4.5 Reemplazar el placeholder de `App.tsx` por el `Header` + 4 secciones vacías con los ids reales (`inicio`, `sobre-mi`, `proyectos`, `contacto`), solo para verificar el comportamiento.
+- [x] 4.6 Corregido warning de Base UI sobre `nativeButton` en el botón de CV.
+- [x] 4.7 Verificado en navegador: header sticky, scroll suave a cada ancla sin tapar el título, íconos abren en pestaña nueva, sin errores de consola.
+
+---
