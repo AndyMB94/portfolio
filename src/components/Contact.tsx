@@ -1,14 +1,16 @@
 import { Button } from '@/components/ui/button'
 import { GithubIcon, LinkedinIcon } from '@/components/icons'
 import { MapPin } from 'lucide-react'
+import { Starfield } from '@/components/Starfield'
 
 export function Contact() {
   return (
     <section
       id="contacto"
-      className="scroll-mt-20 border-t border-border bg-card px-6 py-24 text-center"
+      className="relative scroll-mt-20 overflow-hidden border-t border-border bg-card px-6 py-24 text-center"
     >
-      <div className="mx-auto flex max-w-2xl flex-col items-center gap-6">
+      <Starfield />
+      <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-6">
         <h2 className="text-3xl font-medium text-foreground">Contacto</h2>
         <p className="text-muted-foreground">
           ¿Tiene una oportunidad o quiere charlar sobre algún proyecto? Escríbame.

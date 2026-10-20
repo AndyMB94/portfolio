@@ -1,4 +1,5 @@
 import profileImg from '@/assets/profile.jpg'
+import { Starfield } from '@/components/Starfield'
 
 const STACK = [
   'React',
@@ -16,8 +17,12 @@ const STACK = [
 
 export function About() {
   return (
-    <section id="sobre-mi" className="scroll-mt-20 border-t border-border bg-card px-6 py-24">
-      <div className="mx-auto flex max-w-5xl flex-col gap-12 md:flex-row md:items-start">
+    <section
+      id="sobre-mi"
+      className="relative scroll-mt-20 overflow-hidden border-t border-border bg-card px-6 py-24"
+    >
+      <Starfield />
+      <div className="relative mx-auto flex max-w-5xl flex-col gap-12 md:flex-row md:items-start">
         <img
           src={profileImg}
           alt="Andy Mallcco"

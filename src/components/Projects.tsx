@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { Starfield } from '@/components/Starfield'
 
 const HIGHLIGHTS = [
   'Pipeline de voz completo en tiempo real: React → Socket.io → Django → Celery → Deepgram (STT) → DeepSeek (LLM) → ElevenLabs (TTS) → de vuelta al navegador.',
@@ -9,8 +10,9 @@ const HIGHLIGHTS = [
 
 export function Projects() {
   return (
-    <section id="proyectos" className="scroll-mt-20 border-t border-border px-6 py-24">
-      <div className="mx-auto max-w-5xl">
+    <section id="proyectos" className="relative scroll-mt-20 overflow-hidden border-t border-border px-6 py-24">
+      <Starfield />
+      <div className="relative mx-auto max-w-5xl">
         <h2 className="text-3xl font-medium text-foreground">Proyectos</h2>
 
         <div className="mt-10 rounded-2xl border border-border bg-card p-8">
