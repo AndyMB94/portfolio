@@ -240,3 +240,18 @@ Checklist:
 - [x] 12.5 Verificado en navegador: la flecha se ve sin scrollear, lleva a Sobre mí al hacer clic, y el nav ya no queda con un link pegado al volver al Hero.
 
 ---
+
+## Fase 13 — Open Graph y Twitter Card (cerrada 2026-10-20)
+
+**Contexto:** Sin estas etiquetas, compartir el link del portafolio (LinkedIn, WhatsApp, X) no muestra ninguna vista previa prolija — quedó pendiente desde la Fase 9 por faltar la imagen de preview.
+
+**Decisión 1 — imagen generada con SVG + `sharp-cli`, sin herramienta de diseño.** Se armó la imagen de 1200x630 como SVG a mano (mismo fondo oscuro, acento morado, tipografía mono y estrellas del resto del sitio, generadas con el mismo criterio que `src/lib/stars.ts`) y se rasterizó a PNG con `sharp-cli` vía `npx` — sin instalar un navegador headless ni herramientas pesadas, ya que no había ninguna disponible en el entorno.
+
+**Decisión 2 — URLs absolutas apuntando al dominio real.** `og:url` y `og:image` usan `https://andymallcco.dev/...` (el dominio final, según `INFRA.md`) en vez de una ruta relativa o `localhost` — es lo que exige el estándar de Open Graph, pero como consecuencia estas etiquetas no se pueden probar "en vivo" compartiendo el link hasta que el sitio esté desplegado ahí.
+
+Checklist:
+- [x] 13.1 Generar `public/og-image.png` (1200x630) con `sharp-cli`, consistente con el diseño del sitio.
+- [x] 13.2 Agregar etiquetas `og:*` y `twitter:*` en `index.html`.
+- [x] 13.3 Verificado: `pnpm run build` sigue limpio con las etiquetas nuevas.
+
+---
