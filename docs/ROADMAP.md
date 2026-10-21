@@ -255,3 +255,13 @@ Checklist:
 - [x] 13.3 Verificado: `pnpm run build` sigue limpio con las etiquetas nuevas.
 
 ---
+
+## Fase 14 — `robots.txt` y `sitemap.xml` (cerrada 2026-10-20)
+
+**Contexto:** Buena práctica de SEO básica para que los buscadores indexen el sitio correctamente, pendiente desde la Fase 9.
+
+Checklist:
+- [x] 14.1 Crear `public/robots.txt` (permite todo, referencia el sitemap).
+- [x] 14.2 Crear `public/sitemap.xml` con la única URL del sitio (es de una sola página).
+
+---
