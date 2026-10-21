@@ -265,3 +265,24 @@ Checklist:
 - [x] 14.2 Crear `public/sitemap.xml` con la única URL del sitio (es de una sola página).
 
 ---
+
+## Fase 15 — Despliegue a producción en la VPS (cerrada 2026-10-21)
+
+**Contexto:** Último paso del proyecto: llevar el sitio de `localhost` al dominio real `andymallcco.dev`, siguiendo el plan de `INFRA.md`.
+
+**Decisión 1 — Node 22 vía NodeSource, no el paquete `apt` de Ubuntu.** El host de la VPS no tenía `node`/`npm` instalados (Vacantia corre todo encapsulado en Docker, sin necesidad de Node en el host). Se usó el script oficial de NodeSource para instalar Node 22 LTS en vez del paquete `nodejs`/`npm` de los repos de Ubuntu (suelen traer versiones viejas) — es una instalación a nivel de sistema operativo, aislada de los contenedores Docker de Vacantia, sin conflicto entre ambas.
+
+**Decisión 2 — `pnpm` vía `corepack`, no `npm install -g pnpm`.** `corepack` viene incluido con Node moderno y es el mecanismo recomendado actualmente para gestionar gestores de paquetes, en vez de instalar `pnpm` global con `npm`.
+
+**Hallazgo — `.dev` fuerza HTTPS en el navegador (HSTS preload).** Antes de correr Certbot, visitar `http://andymallcco.dev` daba error de certificado en vez de la advertencia esperable de "no seguro" — Chrome (y la mayoría de navegadores modernos) tiene todo el TLD `.dev` precargado en su lista HSTS, así que fuerza HTTPS siempre, sin dejar ver la versión HTTP plano. Confirmado por fuera del navegador con `curl` que Nginx sí respondía bien por HTTP antes de Certbot — no era un error real, solo faltaba el certificado.
+
+Checklist:
+- [x] 15.1 DNS en Porkbun (Cloudflare): reemplazado el registro `ALIAS` por defecto de la raíz (apuntaba a `pixie.porkbun.com`, parking page) por un registro `A` a `195.26.250.245`; agregado registro `A` para `www` a la misma IP. No se tocó `vacantia.andymallcco.dev` ni los registros de correo (MX/TXT).
+- [x] 15.2 Conectado por SSH a la VPS (`195.26.250.245`), repo clonado en `/root/portfolio` (mismo nivel que `/root/interviewer-ai`, sin anidarlo adentro).
+- [x] 15.3 Instalado Node 22 (NodeSource) y `pnpm` (vía `corepack`) en el host, inexistentes hasta ahora.
+- [x] 15.4 `pnpm install` + `pnpm run build` en la VPS, copiado de `dist/*` a `/srv/portfolio-static/`.
+- [x] 15.5 Bloque de Nginx para `andymallcco.dev`/`www.andymallcco.dev` en `/etc/nginx/sites-available/`, habilitado con symlink a `sites-enabled/`, `nginx -t` + `systemctl reload nginx`.
+- [x] 15.6 Certbot: certificado HTTPS para ambos dominios, expira 2027-01-19, renovación automática configurada.
+- [x] 15.7 Verificado en navegador: `https://andymallcco.dev` y `https://www.andymallcco.dev` cargan el portafolio real, con candado, sin advertencias.
+
+---
